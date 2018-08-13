@@ -1,0 +1,11 @@
+{
+  "places": [
+    {
+      "id": "1",
+      "placementId": "1"
+    }
+  ],
+  "settings": {
+    "currency": "RUB"
+  }
+}

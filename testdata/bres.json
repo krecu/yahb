@@ -1,0 +1,14 @@
+{
+  "bids": [
+    {
+      "id": "1",
+      "cpm": 0.1,
+      "currency": "RUB",
+      "displayUrl": "http://test.com",
+      "size": {
+        "width": 100,
+        "height": 100
+      }
+    }
+  ]
+}
