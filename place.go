@@ -10,7 +10,7 @@ var (
 type Place struct {
 	ID          string    `json:"id"`                    // уникальный идентификатор Яндекса для рекламного места - должеа вернуться в ответе
 	PlacementId string    `json:"placementId,omitempty"` // идентификатор рекламного в терминах монетизатора
-	Sizes       *Size     `json:"sizes,omitempty"`       // Массив размеров, которые указал пользователь [ширина,высота]
+	Sizes       []Size    `json:"sizes,omitempty"`       // Массив размеров, которые указал пользователь [ширина,высота]
 	Ext         Extension `json:"ext,omitempty"`         // вдруг расширят
 }
 

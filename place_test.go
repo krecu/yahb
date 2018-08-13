@@ -17,6 +17,16 @@ var _ = Describe("place", func() {
 		Expect(subject).To(Equal(&Place{
 			ID:          "1",
 			PlacementId: "1",
+			Sizes: []Size{
+				Size{
+					Width:  100,
+					Height: 100,
+				},
+				Size{
+					Width:  200,
+					Height: 200,
+				},
+			},
 		}))
 	})
 
