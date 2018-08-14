@@ -28,7 +28,7 @@ func (bid *Bid) Validate() error {
 		return ErrInvalidBidNoCpm
 	} else if bid.Currency == "" {
 		return ErrInvalidBidNoCurr
-	} else if bid.DisplayUrl == "" {
+	} else if bid.DisplayUrl == "" && bid.DisplayCode == "" {
 		return ErrInvalidBidNoDisplayUrl
 	} else if bid.Size == nil {
 		return ErrInvalidBidNoSize
