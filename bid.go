@@ -11,12 +11,13 @@ var (
 )
 
 type Bid struct {
-	ID         string    `json:"id"`                   // идентификатор для рекламного места в терминах Яндекса (из запроса)
-	Cpm        float64   `json:"cpm"`                  // ставка, целое число, больше нуля
-	Currency   string    `json:"currency,omitempty"`   // валюта ставки 'RUB'
-	DisplayUrl string    `json:"displayUrl,omitempty"` // url за креативом или строка с кодом (html или js)
-	Size       *Size     `json:"size,omitempty"`
-	Ext        Extension `json:"ext,omitempty"`
+	ID          string    `json:"id"`                    // идентификатор для рекламного места в терминах Яндекса (из запроса)
+	Cpm         float64   `json:"cpm"`                   // ставка, целое число, больше нуля
+	Currency    string    `json:"currency,omitempty"`    // валюта ставки 'RUB'
+	DisplayUrl  string    `json:"displayUrl,omitempty"`  // url за креативом или строка с кодом (html или js)
+	DisplayCode string    `json:"displayCode,omitempty"` // url за креативом или строка с кодом (html или js)
+	Size        *Size     `json:"size,omitempty"`
+	Ext         Extension `json:"ext,omitempty"`
 }
 
 // Validate required attributes
