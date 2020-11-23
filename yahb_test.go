@@ -1,28 +1,81 @@
 package yahb
 
 import (
-	"encoding/json"
-	"os"
-	"path/filepath"
+	"io/ioutil"
 	"testing"
-
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 )
 
-func TestSuite(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "yahb")
+var placeBuf, _ = ioutil.ReadFile("./testdata/place.json")
+var placeObj = new(Place)
+
+var settingsBuf, _ = ioutil.ReadFile("./testdata/setting.json")
+var settingsObj = new(Setting)
+
+var reqBuf, _ = ioutil.ReadFile("./testdata/req.json")
+var reqObj = new(BidRequest)
+
+func _testPlaceUnmarshalJSON(t *testing.T) {
+	err := placeObj.UnmarshalJSON(placeBuf)
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
-func iptr(n int) *int       { return &n }
-func sptr(s string) *string { return &s }
-
-func fixture(fname string, v interface{}) error {
-	f, err := os.Open(filepath.Join("testdata", fname+".json"))
+func _testPlaceValidate(t *testing.T) {
+	err := placeObj.Validate()
 	if err != nil {
-		return err
+		t.Fatal(err)
 	}
-	defer f.Close()
-	return json.NewDecoder(f).Decode(v)
+}
+
+func TestPlace(t *testing.T) {
+
+	t.Parallel()
+
+	_testPlaceUnmarshalJSON(t)
+	_testPlaceValidate(t)
+}
+
+func _testSettingsUnmarshalJSON(t *testing.T) {
+	err := settingsObj.UnmarshalJSON(settingsBuf)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func _testSettingsValidate(t *testing.T) {
+	err := settingsObj.Validate()
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestSettings(t *testing.T) {
+
+	t.Parallel()
+
+	_testSettingsUnmarshalJSON(t)
+	_testSettingsValidate(t)
+}
+
+func _testBidRequestUnmarshalJSON(t *testing.T) {
+	err := reqObj.UnmarshalJSON(reqBuf)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func _testBidRequestValidate(t *testing.T) {
+	err := reqObj.Validate()
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestBidRequest(t *testing.T) {
+
+	t.Parallel()
+
+	_testBidRequestUnmarshalJSON(t)
+	_testBidRequestValidate(t)
 }

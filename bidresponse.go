@@ -7,9 +7,9 @@ var (
 	ErrInvalidRespNoSeatBids = errors.New("openrtb: response missing seatbids")
 )
 
+// easyjson:json
 type BidResponse struct {
-	Bid []Bid     `json:"bids"`          // Array of bid objects
-	Ext Extension `json:"ext,omitempty"` // Custom specifications in JSon
+	Bid []Bid `json:"bids"` // Array of bid objects
 }
 
 // Validate required attributes

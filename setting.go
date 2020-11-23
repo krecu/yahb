@@ -3,18 +3,26 @@ package yahb
 import "errors"
 
 var (
-	ErrInvalidSettingCurr = errors.New("yahb: Settings missing currency")
+	ErrInvalidSettingCurr = errors.New("yahb: settings missing currency")
 )
 
+// easyjson:json
 type Setting struct {
-	Currency string    `json:"currency,omitempty"`
-	Ext      Extension `json:"ext,omitempty"`
+	Currency string `json:"currency,omitempty"`
+	WinSize  *Size  `json:"windowSize,omitempty"`
 }
 
 // Validates the `settings` object
 func (setting *Setting) Validate() error {
+
 	if setting.Currency == "" {
 		return ErrInvalidSettingCurr
+	}
+
+	if setting.WinSize != nil {
+		if err := setting.WinSize.Validate(); err != nil {
+			return err
+		}
 	}
 
 	return nil

@@ -7,10 +7,10 @@ var (
 	ErrInvalidReqNoSettings = errors.New("yahb: request missing setting")
 )
 
+// easyjson:json
 type BidRequest struct {
-	Places  []Place   `json:"places,omitempty"`
-	Setting *Setting  `json:"settings,omitempty"`
-	Ext     Extension `json:"ext,omitempty"`
+	Places  []Place  `json:"places,omitempty"`
+	Setting *Setting `json:"settings,omitempty"`
 }
 
 // Validates the request

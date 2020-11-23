@@ -10,14 +10,15 @@ var (
 	ErrInvalidBidNoDisplayUrl = errors.New("yahb: bid is missing DisplayUrl")
 )
 
+// easyjson:json
 type Bid struct {
-	ID          string    `json:"id"`                    // идентификатор для рекламного места в терминах Яндекса (из запроса)
-	Cpm         float64   `json:"cpm"`                   // ставка, целое число, больше нуля
-	Currency    string    `json:"currency,omitempty"`    // валюта ставки 'RUB'
-	DisplayUrl  string    `json:"displayUrl,omitempty"`  // url за креативом или строка с кодом (html или js)
-	DisplayCode string    `json:"displayCode,omitempty"` // url за креативом или строка с кодом (html или js)
-	Size        *Size     `json:"size,omitempty"`
-	Ext         Extension `json:"ext,omitempty"`
+	DisplayUrl  string  `json:"displayUrl,omitempty"`  // url за креативом или строка с кодом (html или js)
+	DisplayCode string  `json:"displayCode,omitempty"` // url за креативом или строка с кодом (html или js)
+	ID          string  `json:"id"`                    // идентификатор для рекламного места в терминах Яндекса (из запроса)
+	Cpm         float64 `json:"cpm"`                   // ставка, целое число, больше нуля
+	Currency    string  `json:"currency,omitempty"`    // валюта ставки 'RUB'
+	PlacementId string  `json:"placementId,omitempty"` // валюта ставки 'RUB'
+	Size        *Size   `json:"size,omitempty"`
 }
 
 // Validate required attributes

@@ -1,0 +1,21 @@
+{
+  "places": [
+    {
+      "id": "1",
+      "placementId": "1",
+      "sizes": [[100,100],[200,200]]
+    },
+    {
+      "id": "2",
+      "placementId": "1",
+      "sizes": [[100,100],[200,200]]
+    }
+  ],
+  "settings": {
+    "currency": "RUB",
+    "windowSize": {
+      "width": 100,
+      "height": 100
+    }
+  }
+}
