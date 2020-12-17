@@ -13,7 +13,7 @@ type BidRequest struct {
 	Setting *Setting `json:"settings,omitempty"`
 }
 
-// Validates the request
+// Validate attributes
 func (req *BidRequest) Validate() error {
 	if len(req.Places) == 0 {
 		return ErrInvalidReqNoPlaces

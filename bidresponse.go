@@ -9,10 +9,10 @@ var (
 
 // easyjson:json
 type BidResponse struct {
-	Bid []Bid `json:"bids"` // Array of bid objects
+	Bid []Bid `json:"bids,omitempty"` // Array of bid objects
 }
 
-// Validate required attributes
+// Validate attributes
 func (res *BidResponse) Validate() error {
 
 	if len(res.Bid) == 0 {

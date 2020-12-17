@@ -46,9 +46,7 @@ func easyjson1f3eed6DecodeGithubComKrecuYahb(in *jlexer.Lexer, out *Setting) {
 				if out.WinSize == nil {
 					out.WinSize = new(Size)
 				}
-				if data := in.Raw(); in.Ok() {
-					in.AddError((*out.WinSize).UnmarshalJSON(data))
-				}
+				easyjson1f3eed6DecodeGithubComKrecuYahb1(in, out.WinSize)
 			}
 		default:
 			in.SkipRecursive()

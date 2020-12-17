@@ -48,17 +48,36 @@ func easyjson700d804fDecodeGithubComKrecuYahb(in *jlexer.Lexer, out *Place) {
 				in.Delim('[')
 				if out.Sizes == nil {
 					if !in.IsDelim(']') {
-						out.Sizes = make([]Size, 0, 4)
+						out.Sizes = make([][]int, 0, 2)
 					} else {
-						out.Sizes = []Size{}
+						out.Sizes = [][]int{}
 					}
 				} else {
 					out.Sizes = (out.Sizes)[:0]
 				}
 				for !in.IsDelim(']') {
-					var v1 Size
-					if data := in.Raw(); in.Ok() {
-						in.AddError((v1).UnmarshalJSON(data))
+					var v1 []int
+					if in.IsNull() {
+						in.Skip()
+						v1 = nil
+					} else {
+						in.Delim('[')
+						if v1 == nil {
+							if !in.IsDelim(']') {
+								v1 = make([]int, 0, 8)
+							} else {
+								v1 = []int{}
+							}
+						} else {
+							v1 = (v1)[:0]
+						}
+						for !in.IsDelim(']') {
+							var v2 int
+							v2 = int(in.Int())
+							v1 = append(v1, v2)
+							in.WantComma()
+						}
+						in.Delim(']')
 					}
 					out.Sizes = append(out.Sizes, v1)
 					in.WantComma()
@@ -94,11 +113,22 @@ func easyjson700d804fEncodeGithubComKrecuYahb(out *jwriter.Writer, in Place) {
 		out.RawString(prefix)
 		{
 			out.RawByte('[')
-			for v2, v3 := range in.Sizes {
-				if v2 > 0 {
+			for v3, v4 := range in.Sizes {
+				if v3 > 0 {
 					out.RawByte(',')
 				}
-				easyjson700d804fEncodeGithubComKrecuYahb1(out, v3)
+				if v4 == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+					out.RawString("null")
+				} else {
+					out.RawByte('[')
+					for v5, v6 := range v4 {
+						if v5 > 0 {
+							out.RawByte(',')
+						}
+						out.Int(int(v6))
+					}
+					out.RawByte(']')
+				}
 			}
 			out.RawByte(']')
 		}
@@ -128,59 +158,4 @@ func (v *Place) UnmarshalJSON(data []byte) error {
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Place) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjson700d804fDecodeGithubComKrecuYahb(l, v)
-}
-func easyjson700d804fDecodeGithubComKrecuYahb1(in *jlexer.Lexer, out *Size) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "width":
-			out.Width = int(in.Int())
-		case "height":
-			out.Height = int(in.Int())
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson700d804fEncodeGithubComKrecuYahb1(out *jwriter.Writer, in Size) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	if in.Width != 0 {
-		const prefix string = ",\"width\":"
-		first = false
-		out.RawString(prefix[1:])
-		out.Int(int(in.Width))
-	}
-	if in.Height != 0 {
-		const prefix string = ",\"height\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Int(int(in.Height))
-	}
-	out.RawByte('}')
 }

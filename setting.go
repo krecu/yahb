@@ -12,7 +12,7 @@ type Setting struct {
 	WinSize  *Size  `json:"windowSize,omitempty"`
 }
 
-// Validates the `settings` object
+// Validate required attributes
 func (setting *Setting) Validate() error {
 
 	if setting.Currency == "" {
