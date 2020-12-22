@@ -53,7 +53,7 @@ func easyjson10eb023eDecodeGithubComKrecuYahb(in *jlexer.Lexer, out *BidResponse
 				}
 				for !in.IsDelim(']') {
 					var v1 Bid
-					easyjson10eb023eDecodeGithubComKrecuYahb1(in, &v1)
+					(v1).UnmarshalEasyJSON(in)
 					out.Bid = append(out.Bid, v1)
 					in.WantComma()
 				}
@@ -83,7 +83,7 @@ func easyjson10eb023eEncodeGithubComKrecuYahb(out *jwriter.Writer, in BidRespons
 				if v2 > 0 {
 					out.RawByte(',')
 				}
-				easyjson10eb023eEncodeGithubComKrecuYahb1(out, v3)
+				(v3).MarshalEasyJSON(out)
 			}
 			out.RawByte(']')
 		}
@@ -113,127 +113,4 @@ func (v *BidResponse) UnmarshalJSON(data []byte) error {
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *BidResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjson10eb023eDecodeGithubComKrecuYahb(l, v)
-}
-func easyjson10eb023eDecodeGithubComKrecuYahb1(in *jlexer.Lexer, out *Bid) {
-	isTopLevel := in.IsStart()
-	if in.IsNull() {
-		if isTopLevel {
-			in.Consumed()
-		}
-		in.Skip()
-		return
-	}
-	in.Delim('{')
-	for !in.IsDelim('}') {
-		key := in.UnsafeFieldName(false)
-		in.WantColon()
-		if in.IsNull() {
-			in.Skip()
-			in.WantComma()
-			continue
-		}
-		switch key {
-		case "displayUrl":
-			out.DisplayUrl = string(in.String())
-		case "displayCode":
-			out.DisplayCode = string(in.String())
-		case "id":
-			out.ID = string(in.String())
-		case "cpm":
-			out.Cpm = float64(in.Float64())
-		case "currency":
-			out.Currency = string(in.String())
-		case "placementId":
-			out.PlacementId = string(in.String())
-		case "size":
-			if in.IsNull() {
-				in.Skip()
-				out.Size = nil
-			} else {
-				if out.Size == nil {
-					out.Size = new(Size)
-				}
-				(*out.Size).UnmarshalEasyJSON(in)
-			}
-		default:
-			in.SkipRecursive()
-		}
-		in.WantComma()
-	}
-	in.Delim('}')
-	if isTopLevel {
-		in.Consumed()
-	}
-}
-func easyjson10eb023eEncodeGithubComKrecuYahb1(out *jwriter.Writer, in Bid) {
-	out.RawByte('{')
-	first := true
-	_ = first
-	if in.DisplayUrl != "" {
-		const prefix string = ",\"displayUrl\":"
-		first = false
-		out.RawString(prefix[1:])
-		out.String(string(in.DisplayUrl))
-	}
-	if in.DisplayCode != "" {
-		const prefix string = ",\"displayCode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.String(string(in.DisplayCode))
-	}
-	if in.ID != "" {
-		const prefix string = ",\"id\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.String(string(in.ID))
-	}
-	if in.Cpm != 0 {
-		const prefix string = ",\"cpm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.Float64(float64(in.Cpm))
-	}
-	if in.Currency != "" {
-		const prefix string = ",\"currency\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.String(string(in.Currency))
-	}
-	if in.PlacementId != "" {
-		const prefix string = ",\"placementId\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		out.String(string(in.PlacementId))
-	}
-	if in.Size != nil {
-		const prefix string = ",\"size\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
-		(*in.Size).MarshalEasyJSON(out)
-	}
-	out.RawByte('}')
 }

@@ -48,6 +48,8 @@ func easyjson31527abDecodeGithubComKrecuYahb(in *jlexer.Lexer, out *Bid) {
 			out.Currency = string(in.String())
 		case "placementId":
 			out.PlacementId = string(in.String())
+		case "codeType":
+			out.CodeType = BidCodeType(in.String())
 		case "size":
 			if in.IsNull() {
 				in.Skip()
@@ -127,6 +129,16 @@ func easyjson31527abEncodeGithubComKrecuYahb(out *jwriter.Writer, in Bid) {
 			out.RawString(prefix)
 		}
 		out.String(string(in.PlacementId))
+	}
+	if in.CodeType != "" {
+		const prefix string = ",\"codeType\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.CodeType))
 	}
 	if in.Size != nil {
 		const prefix string = ",\"size\":"

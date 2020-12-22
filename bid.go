@@ -24,7 +24,7 @@ type Bid struct {
 	Cpm         float64     `json:"cpm,omitempty"`         // ставка, целое число, больше нуля
 	Currency    string      `json:"currency,omitempty"`    // валюта ставки 'RUB'
 	PlacementId string      `json:"placementId,omitempty"` // валюта ставки 'RUB'
-	CodeType    BidCodeType `json:"codeType"`
+	CodeType    BidCodeType `json:"codeType,omitempty"`
 	Size        *Size       `json:"size,omitempty"`
 }
 
