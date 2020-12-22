@@ -15,6 +15,11 @@ type BidCodeType string
 const CodeTypeInPage BidCodeType = "inpage"
 const CodeTypeHtml BidCodeType = "html"
 const CodeTypeJs BidCodeType = "js"
+const CodeTypeAny BidCodeType = "combo"
+
+const CodeTypeInStreamPreRoll BidCodeType = "preroll"
+const CodeTypeInStreamMidRoll BidCodeType = "midrol"
+const CodeTypeInStreamPostRoll BidCodeType = "postroll"
 
 // easyjson:json
 type Bid struct {

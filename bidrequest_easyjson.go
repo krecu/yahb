@@ -44,7 +44,7 @@ func easyjson89fe9b30DecodeGithubComKrecuYahb(in *jlexer.Lexer, out *BidRequest)
 				in.Delim('[')
 				if out.Places == nil {
 					if !in.IsDelim(']') {
-						out.Places = make([]Place, 0, 1)
+						out.Places = make([]Place, 0, 0)
 					} else {
 						out.Places = []Place{}
 					}

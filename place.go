@@ -9,9 +9,10 @@ var (
 
 // easyjson:json
 type Place struct {
-	ID          string  `json:"id"`                    // уникальный идентификатор Яндекса для рекламного места - должеа вернуться в ответе
-	PlacementId string  `json:"placementId,omitempty"` // идентификатор рекламного в терминах монетизатора
-	Sizes       [][]int `json:"sizes,omitempty"`       // Массив размеров, которые указал пользователь [ширина,высота]
+	ID          string      `json:"id"`                    // уникальный идентификатор Яндекса для рекламного места - должеа вернуться в ответе
+	PlacementId string      `json:"placementId,omitempty"` // идентификатор рекламного в терминах монетизатора
+	CodeType    BidCodeType `json:"codeType,omitempty"`
+	Sizes       [][]int     `json:"sizes,omitempty"` // Массив размеров, которые указал пользователь [ширина,высота]
 }
 
 // Size - size in uniq format
