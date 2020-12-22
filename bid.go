@@ -10,15 +10,22 @@ var (
 	ErrInvalidBidNoDisplay = errors.New("yahb: bid is missing Display data")
 )
 
+type BidCodeType string
+
+const CodeTypeInPage BidCodeType = "inpage"
+const CodeTypeHtml BidCodeType = "html"
+const CodeTypeJs BidCodeType = "js"
+
 // easyjson:json
 type Bid struct {
-	DisplayUrl  string  `json:"displayUrl,omitempty"`  // url за креативом или строка с кодом (html или js)
-	DisplayCode string  `json:"displayCode,omitempty"` // url за креативом или строка с кодом (html или js)
-	ID          string  `json:"id,omitempty"`          // идентификатор для рекламного места в терминах Яндекса (из запроса)
-	Cpm         float64 `json:"cpm,omitempty"`         // ставка, целое число, больше нуля
-	Currency    string  `json:"currency,omitempty"`    // валюта ставки 'RUB'
-	PlacementId string  `json:"placementId,omitempty"` // валюта ставки 'RUB'
-	Size        *Size   `json:"size,omitempty"`
+	DisplayUrl  string      `json:"displayUrl,omitempty"`  // url за креативом или строка с кодом (html или js)
+	DisplayCode string      `json:"displayCode,omitempty"` // url за креативом или строка с кодом (html или js)
+	ID          string      `json:"id,omitempty"`          // идентификатор для рекламного места в терминах Яндекса (из запроса)
+	Cpm         float64     `json:"cpm,omitempty"`         // ставка, целое число, больше нуля
+	Currency    string      `json:"currency,omitempty"`    // валюта ставки 'RUB'
+	PlacementId string      `json:"placementId,omitempty"` // валюта ставки 'RUB'
+	CodeType    BidCodeType `json:"codeType"`
+	Size        *Size       `json:"size,omitempty"`
 }
 
 // Validate attributes
