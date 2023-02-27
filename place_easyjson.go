@@ -40,6 +40,8 @@ func easyjson700d804fDecodeGithubComKrecuYahb(in *jlexer.Lexer, out *Place) {
 			out.ID = string(in.String())
 		case "placementId":
 			out.PlacementId = string(in.String())
+		case "codeType":
+			out.CodeType = BidCodeType(in.String())
 		case "sizes":
 			if in.IsNull() {
 				in.Skip()
@@ -107,6 +109,11 @@ func easyjson700d804fEncodeGithubComKrecuYahb(out *jwriter.Writer, in Place) {
 		const prefix string = ",\"placementId\":"
 		out.RawString(prefix)
 		out.String(string(in.PlacementId))
+	}
+	if in.CodeType != "" {
+		const prefix string = ",\"codeType\":"
+		out.RawString(prefix)
+		out.String(string(in.CodeType))
 	}
 	if len(in.Sizes) != 0 {
 		const prefix string = ",\"sizes\":"
